@@ -1,0 +1,13 @@
+: 1
+name: libcrails-any
+version: 2.0.0
+language: c++
+summary: crails-any C++ library
+license: BSD-3-Clause
+description-file: README.md
+url: https://github.com/crails-framework/libcrails-any.git
+email: michael@unetresgrossebite.com
+depends: * build2 >= 0.16.0
+depends: * bpkg >= 0.16.0
+depends: libcrails-logger ^2.0.0
+depends: libbacktrace ^1.0.0

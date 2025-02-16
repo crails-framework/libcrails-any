@@ -1,0 +1,38 @@
+import intf_libs += libbacktrace%lib{backtrace}
+import intf_libs += libcrails-logger%lib{crails-logger}
+
+lib{crails-any}: {hxx ixx txx cxx}{**} $impl_libs $intf_libs
+
+hxx{version}: in{version} $src_root/manifest
+
+cxx.poptions =+ "-I$out_root" "-I$src_root"
+
+obja{*}: cxx.poptions += -DLIBCRAILS_STATIC_BUILD
+objs{*}: cxx.poptions += -DLIBCRAILS_SHARED_BUILD
+
+lib{crails-any}:
+{
+  cxx.export.poptions = "-I$out_root" "-I$src_root" "-I$src_root/libcrails-any"
+  cxx.export.libs = $intf_libs
+}
+
+liba{crails-any}: cxx.export.poptions += -DLIBCRAILS_STATIC
+libs{crails-any}: cxx.export.poptions += -DLIBCRAILS_SHARED
+
+# For pre-releases use the complete version to make sure they cannot
+# be used in place of another pre-release or the final version. See
+# the version module for details on the version.* variable values.
+#
+if $version.pre_release
+  lib{crails-any}: bin.lib.version = "-$version.project_id"
+else
+  lib{crails-any}: bin.lib.version = "-$version.major.$version.minor"
+
+# Install into the libcrails-any/ subdirectory of, say, /usr/include/
+# recreating subdirectories.
+#
+{hxx ixx txx}{*}:
+{
+  install         = include/
+  install.subdirs = true
+}
