@@ -13,7 +13,6 @@ namespace Crails
 
   void throw_cast_failure(const std::string& varname, const std::type_info& provided, const std::type_info& expected);
   void throw_out_of_range_failure(const SharedVars& vars, const std::string& varname);
-  void log_bad_any_cast(const SharedVars& a, const std::string& k, const std::type_info& expected_type);
 
   template<typename T>
   T cast(const SharedVars& vars, const std::string& name)
@@ -52,20 +51,18 @@ namespace Crails
     return default_value;
   }
 
-  // deprecate ?
   template<typename T>
-  T defaults_to(const SharedVars& vars, const std::string& name, const T default_value) noexcept
+  T cast_or(const SharedVars& vars, const std::string& name, const T default_value) noexcept
   {
     SharedVars::const_iterator var = vars.find(name);
 
     try
     {
-      if (var != vars.end())
+      if (var != vars.end() && var->second.type() == typeid(T))
         return Any<T>::cast(var->second);
     }
-    catch (std::bad_any_cast)
+    catch (...)
     {
-      log_bad_any_cast(vars, name, typeid(T));
     }
     return default_value;
   }

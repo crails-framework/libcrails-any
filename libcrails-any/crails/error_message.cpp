@@ -33,18 +33,4 @@ namespace Crails
 #endif
     return message;
   }
-
-  void log_bad_any_cast(const SharedVars& a, const string& k, const type_info& expected_type)
-  {
-    SharedVars::const_iterator it = a.find(k);
-
-    if (it != a.end())
-    {
-      std::any value = it->second;
-
-      logger << Logger::Error
-             << bad_any_cast_message(k, value.type(), expected_type)
-             << Logger::endl;
-    }
-  }
 }
