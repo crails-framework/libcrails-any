@@ -1,4 +1,5 @@
 #include "shared_vars.hpp"
+#include "typename.hpp"
 #include <crails/utils/backtrace.hpp> 
 #include <crails/logger.hpp>
 #include <sstream>
@@ -19,13 +20,13 @@ namespace Crails
     return vars;
   }
 
-  string output_vars_list(const SharedVars& vars)
+  static string output_vars_list(const SharedVars& vars)
   {
     ostringstream stream;
 
     stream << "Debugging available SharedVars:" << std::endl;
     for (const auto& var : vars)
-      stream << "- " << var.first << " (" << var.second.type().name() << ')' << std::endl;
+      stream << "- " << var.first << " (" << Typename(var.second.type()) << ')' << std::endl;
     return stream.str();
   }
 
