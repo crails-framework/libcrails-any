@@ -58,7 +58,7 @@ namespace Crails
 
     try
     {
-      if (var != vars.end() && var->second.type() == typeid(T))
+      if (var != vars.end())
         return Any<T>::cast(var->second);
     }
     catch (...)
