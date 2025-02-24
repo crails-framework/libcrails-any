@@ -10,4 +10,4 @@ email: michael@unetresgrossebite.com
 depends: * build2 >= 0.16.0
 depends: * bpkg >= 0.16.0
 depends: libcrails-logger ^2.0.0
-depends: libbacktrace ^1.0.0
+depends: libbacktrace ^2.0.0
