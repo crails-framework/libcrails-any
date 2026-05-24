@@ -18,7 +18,7 @@ int main()
       {"valueD", 42}
     };
 
-    assert(cast<const char*>(vars, "valueA") == "const char*");
+    assert(cast<const char*>(vars, "valueA") == string("const char*"));
     assert(cast<string_view>(vars, "valueB") == "string_view");
     assert(cast<string>(vars, "valueC") == "string");
     assert(cast<int>(vars, "valueD") == 42);

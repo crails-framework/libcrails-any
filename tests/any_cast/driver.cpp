@@ -31,11 +31,11 @@ int main()
     assert(Any<string_view>::cast(const_stringview_value) == "coucou");
     assert(Any<string_view>::cast(const_string_value) == "coucou");
 
-    assert(Any<const char*>::cast(constchar_value) == "coucou");
-    assert(Any<const char*>::cast(stringview_value) == "coucou");
-    assert(Any<const char*>::cast(string_value) == "coucou");
-    assert(Any<const char*>::cast(const_stringview_value) == "coucou");
-    assert(Any<const char*>::cast(const_string_value) == "coucou");
+    assert(Any<const char*>::cast(constchar_value) == string("coucou"));
+    assert(Any<const char*>::cast(stringview_value) == string("coucou"));
+    assert(Any<const char*>::cast(string_value) == string("coucou"));
+    assert(Any<const char*>::cast(const_stringview_value) == string("coucou"));
+    assert(Any<const char*>::cast(const_string_value) == string("coucou"));
   }
 
   return 0;
