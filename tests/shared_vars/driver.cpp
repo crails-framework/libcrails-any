@@ -1,5 +1,7 @@
 #include <crails/shared_vars.hpp>
+#include <crails/logger.hpp>
 #include <stdexcept>
+#include <iostream>
 
 #undef NODEBUG
 #include <cassert>
@@ -78,6 +80,7 @@ int main()
     assert(Crails::cast_or<string>(data, "jagon", "sucer") == "sucer");
   }
 
+  Crails::logger.cleanup();
   return 0;
 }
 
